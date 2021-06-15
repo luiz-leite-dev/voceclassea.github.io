@@ -5,11 +5,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Aclonica&display=swap');
 body 
 {
-  margin: 0;
+  margin: 50px;
   padding: 0;
   display: flex;
-  justify-content: center;
-  align-items: center;
   height: 100vh;  
   background-color: white;
   animation: sky 12s;
@@ -26,7 +24,8 @@ h1 span
   display: table-cell;
   margin: 0;
   padding: 0;
-  animation: animate 2s linear 1;
+  animation: animateText 2s linear 1;
+  animation-delay: 2s;
 }
 h1 span:nth-child(1)
 {
@@ -160,6 +159,31 @@ h1 span:nth-child(29)
   max-width: 100%;
   animation: cloud calc(8s * var(--i)) ease-out 5;
 }
+.rocket img
+{
+  position: absolute;
+  left:526px;
+  top:74px;
+  opacity: 0;
+  transform: rotate(29deg);
+  animation: animateRocket 3s linear 1;
+  animation-delay: 2s;
+  overflow: hidden;
+}
+.logo
+{
+  position: absolute;
+  left:385px;
+  top:10px;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  animation: animateLogo 5s ease-in 1;
+  overflow: hidden;
+}
 @keyframes sky 
 {
   from 
@@ -183,13 +207,13 @@ h1 span:nth-child(29)
     transform: translateX(100%);
   }
 }
-@keyframes animate
+@keyframes animateText
 {
   0%
   {
     color: #fff;
     filter: blur(2px);
-    text-shadow: 0 0 10px #00b3ff,
+    text-shadow: 0 0 10px rgb(0, 179, 255),
                 0 0 20px #00b3ff,
                 0 0 40px #00b3ff,
                 0 0 60px #00b3ff,
@@ -200,14 +224,34 @@ h1 span:nth-child(29)
   }
   100%
   {
-    color: #6CA4C8;
+    color: rgb(108, 164, 200);
     filter: blur(0px);
     text-shadow: none;
   }
 }
+@keyframes animateRocket
+{
+  0%   {opacity: 1; left:-100%; top:200px; transform: rotate(45deg);}
+  45%  {left:100px; top:10px;}
+  65%  {left:250px; top:250px; transform: rotate(135deg);}
+  85%  {left:400px; top:180px; transform: rotate(45deg);}
+  99% {left:526px; top:74px; transform: rotate(29deg);}
+  100% {opacity: 0;}
+}
+@keyframes animateLogo
+{
+  0%,95% {opacity: 0;}
+  100% {opacity: 1;}
+}
 </style>
 </head>
 <body>
+  <div class="rocket">
+    <img src="images/rocket.png">
+  </div>
+  <div class="logo">    
+    <img src="images/logo.png">
+  </div>
   <h1>
     <span>s</span>
     <span>u</span>
@@ -235,11 +279,11 @@ h1 span:nth-child(29)
     <span>.</span>
   </h1>
   <div class="clouds">
-  <img src="images/cloud1.png"/ style="--i:1;">
-  <img src="images/cloud2.png"/ style="--i:2;">
-  <img src="images/cloud3.png"/ style="--i:3;">
-  <img src="images/cloud4.png"/ style="--i:4;">
-  <img src="images/cloud5.png"/ style="--i:5;">
-</div>
+    <img src="images/cloud1.png" style="--i:1;">
+    <img src="images/cloud2.png" style="--i:2;">
+    <img src="images/cloud3.png" style="--i:3;">
+    <img src="images/cloud4.png" style="--i:4;">
+    <img src="images/cloud5.png" style="--i:5;">
+  </div>
 </body>
 </html>
