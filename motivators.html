@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<meta charset="utf-8"/>
+<html>
+  <head>
+  </head>
+  <body>
+    <form id="myfrm">
+    <p>Nome: <input type="text" id="nome">   Data: <input type="date" id="data" value="new Date()"></p>
+    <img id="img1" width="180" src="images/moving-motivators-aceitacao.png" style="position: absolute; z-index: 1;">
+    <img id="img2" width="180" src="images/moving-motivators-curiosidade.png" style="position: absolute; z-index: 2;">
+    <img id="img3" width="180" src="images/moving-motivators-honra.png" style="position: absolute; z-index: 3;">
+    <img id="img4" width="180" src="images/moving-motivators-liberdade.png" style="position: absolute; z-index: 4;">
+    <img id="img5" width="180" src="images/moving-motivators-maestria.png" style="position: absolute; z-index: 5;">
+    <img id="img6" width="180" src="images/moving-motivators-meta.png" style="position: absolute; z-index: 6;">
+    <img id="img7" width="180" src="images/moving-motivators-ordem.png" style="position: absolute; z-index: 7;">
+    <img id="img8" width="180" src="images/moving-motivators-poder.png" style="position: absolute; z-index: 8;">
+    <img id="img9" width="180" src="images/moving-motivators-relação.png" style="position: absolute; z-index: 9;">
+    <img id="img10" width="180" src="images/moving-motivators-status.png" style="position: absolute; z-index: 10;">
+    </form>
+    <script>
+        var moving = false;
+        var image = null;
+
+        var img1 = document.getElementById("img1");
+        var img2 = document.getElementById("img2");
+        var img3 = document.getElementById("img3");
+        var img4 = document.getElementById("img4");
+        var img5 = document.getElementById("img5");
+        var img6 = document.getElementById("img6");
+        var img7 = document.getElementById("img7");
+        var img8 = document.getElementById("img8");
+        var img9 = document.getElementById("img9");
+        var img10 = document.getElementById("img10");
+        document.getElementById('data').valueAsDate = new Date();
+
+        img1.addEventListener("mousedown", initialClick, false);
+        img2.addEventListener("mousedown", initialClick, false);
+        img3.addEventListener("mousedown", initialClick, false);
+        img4.addEventListener("mousedown", initialClick, false);
+        img5.addEventListener("mousedown", initialClick, false);
+        img6.addEventListener("mousedown", initialClick, false);
+        img7.addEventListener("mousedown", initialClick, false);
+        img8.addEventListener("mousedown", initialClick, false);
+        img9.addEventListener("mousedown", initialClick, false);
+        img10.addEventListener("mousedown", initialClick, false);
+
+        function move(e){
+            var newX = e.clientX - 10;
+            var newY = e.clientY - 10;
+
+            image.style.left = newX + "px";
+            image.style.top = newY + "px";
+        }
+
+        function initialClick(e) {
+            if(moving){
+                image.style.width = "180px";
+                document.removeEventListener("mousemove", move);
+                moving = !moving;
+                return;
+            }
+            
+            moving = !moving;
+            image = this;
+            document.addEventListener("mousemove", move, false);
+            image.style.width = "500px";
+        }
+    </script>
+  </body>
+</html>

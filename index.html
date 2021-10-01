@@ -1,53 +1,67 @@
 <!DOCTYPE html>
-<html>
-<head>
-<link rel="stylesheet" href="index.css">
-</head>
-<body>
-  <div class="rocket">
-    <img src="images/rocket.png">
-  </div>
-  <div class="logo">    
-    <img src="images/logo.png">
-  </div>
-  <h1>
-    <span>s</span>
-    <span>u</span>
-    <span>a&nbsp;</span>
-    <span>m</span>
-    <span>e</span>
-    <span>l</span>
-    <span>h</span>
-    <span>o</span>
-    <span>r&nbsp;</span>
-    <span>v</span>
-    <span>e</span>
-    <span>r</span>
-    <span>s</span>
-    <span>ã</span>
-    <span>o&nbsp;</span>
-    <span>e</span>
-    <span>s</span>
-    <span>t</span>
-    <span>á&nbsp;</span>
-    <span>c</span>
-    <span>h</span>
-    <span>e</span>
-    <span>g</span>
-    <span>a</span>
-    <span>n</span>
-    <span>d</span>
-    <span>o</span>
-    <span>.</span>
-    <span>.</span>
-    <span>.</span>
-  </h1>
-  <div class="clouds">
-    <img src="images/cloud1.png" style="--i:1;">
-    <img src="images/cloud2.png" style="--i:2;">
-    <img src="images/cloud3.png" style="--i:3;">
-    <img src="images/cloud4.png" style="--i:4;">
-    <img src="images/cloud5.png" style="--i:5;">
-  </div>
-</body>
-</html>
+<!-- saved from url=(0069)https://www.cssscript.com/demo/header-navbar-templates/header-1.html# -->
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">    
+    <title>Você Classe A</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="reset.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="header.css">  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script>
+      function changeLocation(location) {
+        window.location = '#/' + location;
+      }
+  
+      function loadConteudo(pagina, location) {
+        document.getElementById('conteudo').src = pagina;
+        if (location) {
+          changeLocation(pagina);
+        }
+      }
+  
+      function loadPageFromLocation() {
+        if (document.location.toString().includes("#/")) {
+          var pagina = document.location.toString();
+          var hashPos = pagina.indexOf("#/");
+          pagina = pagina.substring(hashPos + 2, pagina.length);
+          loadConteudo(pagina, false);
+        }
+      }
+
+      function imprimir() {
+        var menu = document.getElementById("menu");
+        menu.style.display = "none";
+        print();
+        menu.style.display = "";
+      }
+    </script>
+  </head>
+  <body onload="loadConteudo('home.html', true);">
+    <!-- Header Start -->
+    <header id="menu" class="site-header">
+      <div class="wrapper site-header__wrapper">
+        <a href="#" class="brand">Você Classe A</a>
+        <nav class="nav">
+          <button class="nav__toggle" aria-expanded="false" type="button">
+            menu
+          </button>
+          <ul class="nav__wrapper">
+            <li class="nav__item"><a href="#/home.html" onclick="loadConteudo('home.html',true);">Home</a></li>
+            <li class="nav__item"><a href="#/about.html" onclick="loadConteudo('about.html',true);">Sobre</a></li>
+            <li class="nav__item"><a href="#/blog.html" onclick="loadConteudo('blog.html',true);">Artigos</a></li>
+            <li class="nav__item"><a href="#/motivators.html" onclick="loadConteudo('motivators.html',true);">Motivadores</a></li>
+            <li class="nav__item"><a href="#/contact.html" onclick="loadConteudo('contact.html',true);">Contato</a></li>
+            <li class="nav__item"><a href="#/print.html" onclick="imprimir()"><i class="fa">&#xf02f;</i> Imprimir</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <!-- Header End -->
+
+    <script src="header.js"></script>
+    <iframe id="conteudo" width=99% height=85% frameborder="0" marginheight="0" marginwidth="0"
+    style="position: absolute">Sua melhor versão está chegando...</iframe>
+
+</body></html>
