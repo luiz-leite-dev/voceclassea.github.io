@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+      .slider {
+        -webkit-appearance: none;
+        height: 8px;
+        border-radius: 5px;
+        background: -webkit-repeating-linear-gradient(90deg, #777, #777 1px, transparent 1px, transparent 24.5%) no-repeat 50% 50%;
+        background: -moz-repeating-linear-gradient(90deg, #777, #777 1px, transparent 1px, transparent 24.5%) no-repeat 50% 50%;
+        background: repeating-linear-gradient(90deg, #777, #777 1px, transparent 1px, transparent 24.5%) no-repeat 50% 50%;
+        background-size: 122px 25px;
+        outline: none;
+        opacity: 0.7;
+        -webkit-transition: .2s;
+        transition: opacity .2s;
+      }
+
+      .slider::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 15px;
+        height: 15px;
+        border-radius: 50%; 
+        background: #04AA6D;
+        cursor: pointer;
+      }
+
+      .slider::-moz-range-thumb {
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+        background: #04AA6D;
+        cursor: pointer;
+      }
+
+      tr {
+        height: 40px;
+      }
+
+      .destaque {
+        font-weight: bold;
+        font-size: 2em;
+      }
+
+      .coluna1 {
+        text-align: right;
+      }
+    </style>
+    <script>
+      function verResultado() {
+        var resultado = 0, analitico = 0, sistemico = 0;
+        var peso = 50/26;
+        for (var i = 1; i <= 13; i++) {
+          var questao = document.getElementById("questao"+i);
+          if (questao != undefined) {
+            valor = parseInt(questao.value);
+          } else {
+            questao = document.getElementById("questao"+i+"invertida");
+            valor = parseInt(questao.value) * -1;
+          }
+          resultado += valor;
+        }
+        sistemico = (50 + (resultado * peso)).toFixed(0);
+        analitico = (100 - sistemico).toFixed(0);
+        document.getElementById("resultado").textContent = analitico+"% Analítico - "+sistemico+"% Sistêmico";
+      }
+
+      function embaralharQuestoes() {
+        var questoes = [
+          ["gosto de simplificar, porque o simples é bom","não existe solução simples para problemas complexos"],
+          ["gosto da estabilidade e das coisas nos seus devidos lugares","não existe estabilidade, ou estamos evoluindo, ou morrendo"],
+          ["me irrito quando as pessoas não enxergam o óbvio","o óbvio é apenas um ponto de vista, ou seja, é subjetivo"],
+          ["empresas são como mecanismos, com engrenagens","empresas são organismos vivos com sistemas e subsistemas"],
+          ["trabalho melhor quando há regras bem definidas","trabalho melhor quando recebo certa autonomia"],
+          ["o mais importante é entender cada parte do problema","o mais importante é entender o problema como um todo"],
+          ["sempre quebro um problema grande em partes menores e mais fáceis de entender","prefiro atacar um problema grande de maneira mais ampla, partindo de uma visão macro"],
+          ["a melhor forma de entender um problema é isolar as partes envolvidas","a melhor forma de entender um problema é observá-lo no contexto em que ocorre"],
+          ["quando um erro ocorre é preciso identificar o culpado para que ele pare de errar","quando um erro ocorre é preciso avaliar qual processo está gerando esse resultado negativo"],
+          ["toda atividade pode ser quebrada, estimada e prevista","estimativas tendem sempre à média histórica, por isso prefiro probabilidade e estatística"],
+          ["um trabalho só é eficiente se bem planejado e bem executado","um trabalho só é eficaz, se bem escolhido para atender à real demanda"],
+          ["ser eficiente é resolver bem o problema","ser eficaz é resolver o problema certo"],
+          ["as soluções mais rápidas vem de profissionais especialistas","as soluções mais eficazes vem de times multidisciplinares"]
+        ];
+        tabela = "<table>";
+        tabela += " <tr>";
+        tabela += "   <th colspan='3' style='padding-right: 5%;' class='destaque'>Analítico x Sistêmico      </th>";
+        tabela += " </tr>";
+        questoes.forEach(function(item, index) {
+          var questao = index+1;
+          questao = "questao"+questao;
+          var registro = "<tr><td class='coluna1'>";
+          if (Math.random() < 0.5) {
+            registro += item[0]+"</td>";
+            registro += "<td><input type='range' min='-2' max='2' value='0' step='1' class='slider' id='"+questao+"'></td>";
+            registro += "<td>"+item[1]+"</td>";
+          } else {
+            registro += item[1]+"</td>";
+            registro += "<td><input type='range' min='-2' max='2' value='0' step='1' class='slider' id='"+questao+"invertida'></td>";
+            registro += "<td>"+item[0]+"</td>";
+          }
+          tabela += registro+"</tr>";
+        });
+        tabela += "<tr><td colspan='3'><button onclick='verResultado()' id='resultado' style='width:100%; padding-right: 6%;' class='destaque'>Ver Resultado</button></td></tr>";
+        tabela += "</table>";
+        document.getElementById("questoes").innerHTML = tabela;
+      }
+    </script>
+</head>
+<body>
+    <div id="questoes"><button onclick="embaralharQuestoes();">Iniciar</button></div>
+</body>
+</html>
